@@ -3,7 +3,7 @@
 </h1>
 <%= search_form_for @p, url: products_search_path do |f| %><%#まず4行目ですが、search_form_forの引数に「@p（検索オブジェクト）」を渡すことで検索フォームを生成しています。urlは「rails routes」を実行して確認しましょう。%><%#search_form_forは、ransack特有の検索フォームを生成するヘルパーメソッドです。%>
   <%= f.label :name_eq, '商品名' %><%#5行目の「_eq」は条件検索を行うための記述です。「eq」とは「equal（イコール）」の略称で、これにより条件に該当するものを探します。今回は、「選択した商品名に合致する物」という条件です。%>
-  <%= f.collection_select :name_eq, @products, :name, :name,  include_blank: '指定なし' %><%#続いて6行目ですが、<%= f.collection_select 第一引数, 第二引数, 第三引数, 第四引数, 第五引数, オプション %の順で並んでいます。各引数に対応する値と役割は以下の通りです。%><%#collection_selectは、DBにある情報をプルダウン形式で表示できるヘルパーメソッドです。%>
+  <%= f.collection_select :name_eq, @product_name, :name, :name,  include_blank: '指定なし' %><%#続いて6行目ですが、<%= f.collection_select 第一引数, 第二引数, 第三引数, 第四引数, 第五引数, オプション %の順で並んでいます。各引数に対応する値と役割は以下の通りです。%><%#collection_selectは、DBにある情報をプルダウン形式で表示できるヘルパーメソッドです。%><%#先ほどまでは@productsの情報を配列に入れていましたが、今回は@product_nameの情報（商品名に重複がない）を引数として持たせています。%>
   <br>
   <%= f.submit '検索' %>
 <% end %>
