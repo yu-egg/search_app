@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all  # 全商品の情報を取得
+    
   end
 
   def search
