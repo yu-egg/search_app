@@ -6,6 +6,19 @@
   <%= f.collection_select :name_eq, @product_name, :name, :name,  include_blank: '指定なし' %><%#続いて6行目ですが、<%= f.collection_select 第一引数, 第二引数, 第三引数, 第四引数, 第五引数, オプション %の順で並んでいます。各引数に対応する値と役割は以下の通りです。%><%#collection_selectは、DBにある情報をプルダウン形式で表示できるヘルパーメソッドです。%><%#先ほどまでは@productsの情報を配列に入れていましたが、今回は@product_nameの情報（商品名に重複がない）を引数として持たせています。%>
   <br>
   <%= f.submit '検索' %>
+  <br>
+  <%# 商品一覧 %>
+  <% @products.each do |product| %><%#@productの中に全商品の情報が入っているので、eachメソッドを利用して各商品の情報が表示されるようにしましょう。%>
+  <td>
+  <br>
+  <li>
+    <%= product.name %>
+    <%= product.size %>
+    <%= product.status %>
+    <%= product.price %>
+    <%= product.category.name %>
+  </li>
+  <% end %>
 <% end %>
 
 <%# 第一引数
