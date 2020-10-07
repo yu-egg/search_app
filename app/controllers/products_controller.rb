@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all  # 全商品の情報を取得
     set_product_column       # privateメソッド内で定義
+    set_category_column
   end
 
   def search
@@ -19,6 +20,12 @@ class ProductsController < ApplicationController
 
   def set_product_column #17行目では、productsテーブルの中のnameカラムを選択（select）して「@product_name」というインスタンス変数に代入しています。この「distinctメソッド」が、DBからレコードを取得する際に重複したものを削除してくれるメソッドです。そして、この処理をするメソッドを「set_product_column」と命名したものを7行目で実行しています。
     @product_name = Product.select("name").distinct  # 重複なくnameカラムのデータを取り出す
+    @product_size = Product.select("size").distinct # 重複なくsizeカラムのデータを取り出す
+    @product_status = Product.select("status").distinct # 重複なくstatusカラムのデータを取り出す
+  end
+
+  def set_category_column
+    @category_name = Category.select("name").distinct
   end
 
 end
